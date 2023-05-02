@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import css from './ContactsForm.module.css';
 
 export class ContactsForm extends Component {
   state = {
@@ -9,8 +10,10 @@ export class ContactsForm extends Component {
     
     handlerSubmit = (e) => {
         e.preventDefault();
-        this.props.addContact({ id: nanoid(5), ...this.state });
+      const isContactExists = this.props.addContact({ id: nanoid(5), ...this.state });
+      if (!isContactExists) {
         this.reset();
+      }
     };
 
     handleChange = (e) => {
@@ -28,10 +31,13 @@ export class ContactsForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handlerSubmit}>
-        <label>
+      <form
+        className={css.phonebook__form}
+        onSubmit={this.handlerSubmit}>
+        <label className={css.phonebook__label}>
           Name
-                <input
+          <input
+            className={css.phonebook__input}
             onChange={this.handleChange}
             type="text"
             name="name"
@@ -42,9 +48,10 @@ export class ContactsForm extends Component {
           />
         </label>
 
-        <label>
+        <label className={css.phonebook__label}>
           Number
-                <input
+          <input
+            className={css.phonebook__input}
             onChange={this.handleChange}
             type="tel"
             name="number"
@@ -54,7 +61,7 @@ export class ContactsForm extends Component {
             value={this.state.number}
           />
         </label>
-        <button type="submit">Add Contact</button>
+        <button className={css.phonebook__add}>Add Contact</button>
       </form>
     );
   }
