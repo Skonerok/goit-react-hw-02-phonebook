@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import css from './Filter.module.css';
  
 export function Filter({handleChange, value}) {
@@ -12,5 +13,10 @@ export function Filter({handleChange, value}) {
          placeholder='Search...' />
      </div>
    )
- }
+}
+ 
+Filter.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
  

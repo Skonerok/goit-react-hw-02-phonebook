@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { ContactsForm } from "./ContactsForm/ContactsForm";
-import { ContactLists } from "./ContactsList/ContactLists";
+import { ContactsList } from "./ContactsList/ContactsList";
 import { Filter } from "./Filter/Filter";
 import css from './App.module.css';
 
@@ -47,7 +47,7 @@ export class App extends Component {
         <ContactsForm addContact={this.handleAddContact} />
         <h2 className={css.phonebook__title}>Contacts</h2>
         <Filter value={this.state.filter} handleChange={this.handleChangeFilter} />
-        <ContactLists contacts={this.handleFilterContacts()} deleteContact={this.handleDeleteContact} />
+        <ContactsList contacts={this.handleFilterContacts()} deleteContact={this.handleDeleteContact} />
       </div>
     );
   }
